@@ -18,22 +18,21 @@ const foo= async ()=>{
     for (j=1;j<6;j++){
       const pathFile=path.join(__dirname,'baseFolder',`directory-${i}`,`file-${i}-${j}.txt`);
       await fsPromises.writeFile(pathFile,`Content-file-${i}-${j}`);
-      console.log(pathFile);
+    }}
+
+  for (i=1;i<6;i++){
+const pathDirectory=path.join(__dirname, 'baseFolder',`directory-${i}`)
+    console.log((await fsPromises.stat(pathDirectory)).isFile())
+    console.log(((await fsPromises.stat(pathDirectory)).isDirectory()))
+    for (j=1;j<6;j++){
+      const pathFile=path.join(__dirname,'baseFolder',`directory-${i}`,`file-${i}-${j}.txt`)
       console.log((await fsPromises.stat(pathFile)).isFile())
       console.log(((await fsPromises.stat(pathFile)).isDirectory()))
     }
-
-
-
-
-
-
-
-
-
-
-
   }
+
+
+
 }
 
 void foo()
