@@ -14,41 +14,24 @@ const foo= async ()=>{
 
   for (i=1;i<6;i++){
     await fsPromises.mkdir(path.join(__dirname,'baseFolder',`directory-${i}`));
-
-    const pathFileOne=path.join(__dirname,'baseFolder',`directory-${i}`,`file-${i}-1.txt`);
-    const pathFileTwo=path.join(__dirname,'baseFolder',`directory-${i}`,`file-${i}-2.txt`);
-    const pathFileThree=path.join(__dirname,'baseFolder',`directory-${i}`, `file-${i}-3.txt`);
-    const pathFileFour=path.join(__dirname,'baseFolder',`directory-${i}`,`file-${i}-4.txt`);
-    const pathFileFive=path.join(__dirname,'baseFolder',`directory-${i}`,`file-${i}-5.txt`);
-
-    await fsPromises.writeFile(pathFileOne,`Content-file-${i}-1`);
-    await fsPromises.writeFile(pathFileTwo,`Content-file-${i}-2`);
-    await fsPromises.writeFile(pathFileThree,`Content-file-${i}-3`);
-    await fsPromises.writeFile(pathFileFour,`Content-file-${i}-4`);
-    await fsPromises.writeFile(pathFileFive,`Content-file-${i}-5`);
-
-    console.log(pathFileOne);
-    console.log(pathFileTwo);
-    console.log(pathFileThree);
-    console.log(pathFileFour);
-    console.log(pathFileFive);
-
     console.log(path.join(__dirname, 'baseFolder',`directory-${i}`));
+    for (j=1;j<6;j++){
+      const pathFile=path.join(__dirname,'baseFolder',`directory-${i}`,`file-${i}-${j}.txt`);
+      await fsPromises.writeFile(pathFile,`Content-file-${i}-${j}`);
+      console.log(pathFile);
+      console.log((await fsPromises.stat(pathFile)).isFile())
+      console.log(((await fsPromises.stat(pathFile)).isDirectory()))
+    }
 
-    console.log((await fsPromises.stat(pathFileOne)).isFile())
-    console.log(((await fsPromises.stat(pathFileOne)).isDirectory()))
 
-    console.log((await fsPromises.stat(pathFileTwo)).isFile());
-    console.log((await fsPromises.stat(pathFileTwo)).isDirectory());
 
-    console.log((await fsPromises.stat(pathFileThree)).isFile());
-    console.log((await fsPromises.stat(pathFileThree)).isDirectory());
 
-    console.log((await fsPromises.stat(pathFileFour)).isFile());
-    console.log((await fsPromises.stat(pathFileFour)).isDirectory());
 
-    console.log((await fsPromises.stat(pathFileFive)).isFile());
-    console.log((await fsPromises.stat(pathFileFive)).isDirectory());
+
+
+
+
+
 
   }
 }
